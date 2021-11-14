@@ -5,6 +5,7 @@ import com.assetbookingapp.admin.repository.DeviceRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,17 +45,25 @@ public class DeviceService {
     }
 
     @Transactional
-    public void updateDevice(Long deviceId, Boolean shared, String note) {
+    public void updateDevice(Long deviceId, Boolean shared, String note, LocalDate bookedFrom, LocalDate bookedTo) {
 
         Device device = deviceRepository.findById(deviceId)
             .orElseThrow(() -> new IllegalStateException("device with id: " + deviceId + " does not exist"));
 
-        if (!note.equals(device.getNote())) {
+        if (note != null && !note.equals(device.getNote())) {
             device.setNote(note);
         }
 
-        if (!Objects.equals(shared, device.getShared())) {
+        if (shared != null && !Objects.equals(shared, device.getShared())) {
             device.setShared(shared);
+        }
+
+        if (bookedFrom != null && !Objects.equals(bookedFrom, device.getBookedFromDate())) {
+           device.setBookedFromDate(bookedFrom);
+        }
+
+        if (bookedTo != null && !Objects.equals(bookedTo, device.getBookedToDate())) {
+            device.setBookedToDate(bookedTo);
         }
     }
 

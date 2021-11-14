@@ -1,5 +1,7 @@
 package com.assetbookingapp.admin.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -46,7 +48,15 @@ public class Device {
     @NonNull
     private Boolean dedicated;
 
+    @NonNull
+    private LocalDate bookedFromDate;
+
+    @NonNull
+    private LocalDate bookedToDate;
+
     private String version;
     private String note;
     private String modelNumber;
+
+    private String category;
 }

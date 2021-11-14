@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 @Configuration
@@ -21,7 +22,9 @@ public class DeviceConfig {
                 "testModel",
                 "testSerialNumber",
                 false,
-                false);
+                false,
+                LocalDate.now().minusDays(20),
+                LocalDate.now().plusDays(30));
 
             Device device1 = new Device(
                 "testAssetNumber1",
@@ -29,9 +32,11 @@ public class DeviceConfig {
                 "testModel1",
                 "testSerialNumber1",
                 false,
-                false);
+                false,
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(20));
 
-            deviceRepository.saveAll(Arrays.asList(device,device1));
+            deviceRepository.saveAll(Arrays.asList(device, device1));
         };
     }
 }
