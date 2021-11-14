@@ -1,5 +1,10 @@
 package com.assetbookingapp.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -46,7 +51,15 @@ public class Device {
     @NonNull
     private Boolean dedicated;
 
+    @NonNull
+    private LocalDate bookedFromDate;
+
+    @NonNull
+    private LocalDate bookedToDate;
+
     private String version;
     private String note;
     private String modelNumber;
+
+    private String category;
 }

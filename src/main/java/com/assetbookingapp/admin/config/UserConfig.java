@@ -1,7 +1,7 @@
 package com.assetbookingapp.admin.config;
 
 import com.assetbookingapp.admin.model.Xuser;
-import com.assetbookingapp.admin.repository.XuserRepository;
+import com.assetbookingapp.admin.repository.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 
 @Configuration
-public class XuserConfig {
+public class UserConfig {
 
     @Bean
-    CommandLineRunner commandLineRunnerForUser(XuserRepository userRepository) {
+    CommandLineRunner commandLineRunnerForUser(UserRepository userRepository) {
         return args -> {
             Xuser user = new Xuser(
                 "testUserName",

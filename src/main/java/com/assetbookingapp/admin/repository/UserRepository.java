@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface XuserRepository extends JpaRepository<Xuser, Long> {
+public interface UserRepository extends JpaRepository<Xuser, Long> {
 
     @Query("SELECT u FROM Xuser u WHERE u.employeeId = ?1")
     Optional<Xuser> findByEmployeeId(String employeeId);

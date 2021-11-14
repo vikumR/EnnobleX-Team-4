@@ -1,7 +1,7 @@
 package com.assetbookingapp.admin.service;
 
 import com.assetbookingapp.admin.model.Xuser;
-import com.assetbookingapp.admin.repository.XuserRepository;
+import com.assetbookingapp.admin.repository.UserRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -15,38 +15,38 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class XuserService {
+public class UserService {
 
-    private final XuserRepository xuserRepository;
+    private final UserRepository userRepository;
 
     public List<Xuser> getUsers() {
-        return xuserRepository.findAll();
+        return userRepository.findAll();
     }
 
     public void addUser(Xuser xuser) {
-        Optional<Xuser> userByEmployeeId = xuserRepository.findByEmployeeId(xuser.getEmployeeId());
+        Optional<Xuser> userByEmployeeId = userRepository.findByEmployeeId(xuser.getEmployeeId());
 
         if (userByEmployeeId.isPresent()) {
             throw new IllegalStateException("User already exists");
         }
 
-        xuserRepository.save(xuser);
+        userRepository.save(xuser);
     }
 
     public void deleteUser(Long userId) {
-        boolean exists = xuserRepository.existsById(userId);
+        boolean exists = userRepository.existsById(userId);
 
         if (!exists) {
             throw new IllegalStateException("user with id: " + userId + " does not exist");
         }
 
-        xuserRepository.deleteById(userId);
+        userRepository.deleteById(userId);
     }
 
     @Transactional
     public void updateUser(Long userId, Boolean active) {
 
-        Xuser xuser = xuserRepository.findById(userId)
+        Xuser xuser = userRepository.findById(userId)
             .orElseThrow(() -> new IllegalStateException("user with id: " + userId + " does not exist"));
 
         if (!Objects.equals(active, xuser.getActive())) {
@@ -55,7 +55,7 @@ public class XuserService {
     }
 
     public Xuser getUserById(Long userId) {
-        return xuserRepository.findById(userId)
+        return userRepository.findById(userId)
             .orElseThrow(() -> new IllegalStateException("user with id: " + userId + " does not exist"));
     }
 }
