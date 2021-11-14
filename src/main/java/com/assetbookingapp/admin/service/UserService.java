@@ -1,5 +1,6 @@
 package com.assetbookingapp.admin.service;
 
+import com.assetbookingapp.admin.model.UserType;
 import com.assetbookingapp.admin.model.Xuser;
 import com.assetbookingapp.admin.repository.UserRepository;
 
@@ -23,14 +24,20 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void addUser(Xuser xuser) {
-        Optional<Xuser> userByEmployeeId = userRepository.findByEmployeeId(xuser.getEmployeeId());
+    public void addUser(Xuser user) {
+
+        if (!((UserType.USER.equals(UserType.getByValue(user.getUserType()))) ||
+            (UserType.ADMIN.equals(UserType.getByValue(user.getUserType()))))) {
+            throw new IllegalStateException("Invalid User Type");
+        }
+
+        Optional<Xuser> userByEmployeeId = userRepository.findByEmployeeId(user.getEmployeeId());
 
         if (userByEmployeeId.isPresent()) {
             throw new IllegalStateException("User already exists");
         }
 
-        userRepository.save(xuser);
+        userRepository.save(user);
     }
 
     public void deleteUser(Long userId) {

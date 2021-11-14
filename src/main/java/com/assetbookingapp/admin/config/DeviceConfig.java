@@ -23,8 +23,8 @@ public class DeviceConfig {
                 "testSerialNumber",
                 false,
                 false,
-                LocalDate.now(),
-                LocalDate.now());
+                LocalDate.now().minusDays(20),
+                LocalDate.now().plusDays(30));
 
             Device device1 = new Device(
                 "testAssetNumber1",
@@ -33,10 +33,10 @@ public class DeviceConfig {
                 "testSerialNumber1",
                 false,
                 false,
-                LocalDate.now(),
-                LocalDate.now());
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(20));
 
-            deviceRepository.saveAll(Arrays.asList(device,device1));
+            deviceRepository.saveAll(Arrays.asList(device, device1));
         };
     }
 }

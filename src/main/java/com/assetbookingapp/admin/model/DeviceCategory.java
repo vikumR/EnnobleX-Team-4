@@ -14,32 +14,22 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Entity
 @Table
-public class Xuser {
+public class DeviceCategory {
 
     @Id
     @SequenceGenerator(
-        name = "user_sequence",
-        sequenceName = "user_sequence",
+        name = "device_type_sequence",
+        sequenceName = "device_type_sequence",
         allocationSize = 1
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "user_sequence"
+        generator = "device_type_sequence"
     )
-    private Long userId;
+    private Long id;
 
     @NonNull
-    private String name;
+    private String category;
 
-    @NonNull
-    private String role;
-
-    @NonNull
-    private String employeeId;
-
-    @NonNull
-    private Boolean active;
-
-    @NonNull
-    private String userType;
+    private String deviceNote;
 }

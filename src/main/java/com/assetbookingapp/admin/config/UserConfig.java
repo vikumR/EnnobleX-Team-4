@@ -1,5 +1,6 @@
 package com.assetbookingapp.admin.config;
 
+import com.assetbookingapp.admin.model.UserType;
 import com.assetbookingapp.admin.model.Xuser;
 import com.assetbookingapp.admin.repository.UserRepository;
 
@@ -19,13 +20,15 @@ public class UserConfig {
                 "testUserName",
                 "testUserRole",
                 "testEmployeeId",
-                true);
+                true,
+                UserType.USER.toString());
 
             Xuser user1 = new Xuser(
                 "testUserName1",
                 "testUserRole1",
                 "testEmployeeId1",
-                false);
+                false,
+                UserType.ADMIN.toString());
 
             userRepository.saveAll(Arrays.asList(user, user1));
         };
